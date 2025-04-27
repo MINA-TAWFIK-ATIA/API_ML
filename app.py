@@ -20,17 +20,6 @@ def recommend_and_compare_consumption_report(user_devices_df):
     recommended_consumption = recommended_devices["Daily kWh"].sum()
     consumption_difference = total_consumption - recommended_consumption
 
-    report = []
-    report.append("✅ Recommended Devices to Operate:")
-    for device in recommended_devices["Device"]:
-        report.append(f" - {device}")
-
-    report.append(f"\n🔋 Total Consumption of All Devices: {total_consumption:.2f} kWh")
-    report.append(f"🔌 Total Consumption of Recommended Devices: {recommended_consumption:.2f} kWh")
-    report.append(f"💡 Consumption Difference (Potential Savings): {consumption_difference:.2f} kWh")
-
-    return "\n".join(report)
-
 @app.route('/recommend', methods=['POST'])
 def recommend():
     try:
@@ -63,3 +52,5 @@ def recommend():
 
 
 
+if __name__ == '__main__':
+    app.run(debug=True)
